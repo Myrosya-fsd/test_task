@@ -1,0 +1,6 @@
+* text=auto
+*.vue text
+*.js text
+*.css text
+*.json text
+*.html text
