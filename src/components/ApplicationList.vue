@@ -124,12 +124,12 @@
     printWindow.document.write('</body></html>');
     printWindow.document.close();
     printWindow.focus();
-    printWindow.print(); // <-- виклик друку
+    printWindow.print();
   }
 
   function deleteApplication(app) {
     if (confirm(`Видалити заяву №${app.number}?`)) {
-      emit('delete-application', app); // повідомляємо батьківський компонент
+      emit('delete-application', app);
       selectedApp.value = null;
     }
   }

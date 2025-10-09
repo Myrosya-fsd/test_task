@@ -77,7 +77,8 @@
         <application-form
           :next-number="currentApp.number"
           :edit-app="currentApp"
-          :readonly="true"
+          :is-editing="isEditingApp"
+          @save-application="onSaveApplication"
         />
         <div class="application-actions">
           <button @click="printCurrentApp">Друк</button>
@@ -158,11 +159,19 @@
     currentApp.value = app;
     showApplicationModal.value = true;
     showApplicationsModal.value = false;
+    isEditingApp.value = false; // спочатку тільки перегляд
   }
 
   function closeApplicationModal() {
     showApplicationModal.value = false;
     currentApp.value = null;
+    isEditingApp.value = false;
+  }
+
+  function onSaveApplication(updatedApp) {
+    const index = props.applications.findIndex(a => a.number === updatedApp.number);
+    if (index !== -1) props.applications[index] = { ...updatedApp };
+    closeApplicationModal();
   }
 
   function printCurrentApp() {
@@ -231,14 +240,6 @@
   .search {
     margin-bottom: 10px;
   }
-
-  .search label input {
-    margin-left: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px;
-  }
-
   input[type='text'],
   input[type='tel'],
   input[type='email'] {
@@ -257,6 +258,7 @@
     padding: 5px 10px;
   }
 
+  /* Модальні вікна */
   .modal-overlay {
     position: fixed;
     top: 0;

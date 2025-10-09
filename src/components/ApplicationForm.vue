@@ -63,7 +63,6 @@
     </ul>
 
     <button type="submit">{{ editingApp ? 'Оновити заяву' : 'Зберегти заяву' }}</button>
-    <button type="button" @click="resetForm">Очистити форму</button>
   </form>
 </template>
 
@@ -153,26 +152,60 @@
     initForm();
   }
 </script>
-
 <style scoped>
-  form div {
-    margin-bottom: 10px;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
+
+  form div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   label {
-    display: block;
     font-weight: bold;
   }
+
   input,
   select,
   button {
-    margin-top: 5px;
-    padding: 5px;
+    padding: 10px;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
   }
+
   button {
     width: auto;
-    margin-right: 10px;
-    margin-top: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 </style>
